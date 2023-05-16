@@ -1,0 +1,63 @@
+#Write a query to find the maximum price of a meal with more than 500 calories.
+#Write a query to find the average calories of meals that cost more than 15 EUR
+#Write a query to select all meals that have the MAX price, using HAVING and MAX()
+#Write a query to select all meals that have a price lower than the average price, using HAVING and AVG
+#Write a query to select all meals that have a price lower than the average price and have more than 600 calories
+
+CREATE TABLE MEAL_ORDER(
+NAME VARCHAR(255),
+PRICE DOUBLE,
+TIME_MEAL_ORDERED datetime,
+CALORIES integer
+);
+
+INSERT INTO MEAL_ORDER (NAME,PRICE,TIME_MEAL_ORDERED,CALORIES)
+VALUES('Spaghetti',10.0,DATE_ADD(NOW(), interval 1 day_hour),200);
+INSERT INTO MEAL_ORDER (NAME,PRICE,TIME_MEAL_ORDERED,CALORIES)
+VALUES ('Risotto',8.0,DATE_ADD(NOW(),interval 2 day_hour),120);
+INSERT INTO MEAL_ORDER (NAME,PRICE,TIME_MEAL_ORDERED,CALORIES)
+VALUES ('Bistecca',25.0,DATE_ADD(NOW(),interval 3 day_hour),600);
+INSERT INTO MEAL_ORDER (NAME,PRICE,TIME_MEAL_ORDERED,CALORIES)
+VALUES('Spaghetti',10.0,DATE_ADD(NOW(), interval 5 day_hour),200);
+INSERT INTO MEAL_ORDER (NAME,PRICE,TIME_MEAL_ORDERED,CALORIES)
+VALUES ('Risotto',8.0,DATE_ADD(NOW(),interval 4 day_hour),120);
+INSERT INTO MEAL_ORDER (NAME,PRICE,TIME_MEAL_ORDERED,CALORIES)
+VALUES ('Bistecca',25.0,DATE_ADD(NOW(),interval 6 day_hour),600);
+INSERT INTO MEAL_ORDER (NAME,PRICE,TIME_MEAL_ORDERED,CALORIES)
+VALUES('Spaghetti',10.0,DATE_ADD(NOW(), interval 7 day_hour),200);
+INSERT INTO MEAL_ORDER (NAME,PRICE,TIME_MEAL_ORDERED,CALORIES)
+VALUES('Aspetta e spera',3.0,DATE_ADD(NOW(), interval 7 day_hour),1200);
+
+#SELECT NAME,
+#MAX(PRICE) AS MAC_PRICE
+#FROM MEAL_ORDER
+#WHERE CALORIES>500
+#GROUP BY NAME;
+
+#SELECT NAME,
+#MAX(CALORIES) AS MAX_cal
+#FROM MEAL_ORDER
+#WHERE PRICE >15.0
+#GROUP BY NAME;
+
+#SELECT NAME,
+#MAX(PRICE) as MAX_PRICE
+#FROM MEAL_ORDER
+#GROUP BY NAME
+#HAVING MAX(PRICE) = (SELECT MAX(PRICE) FROM MEAL_ORDER);
+
+#SELECT NAME
+#FROM MEAL_ORDER
+#GROUP BY NAME
+#HAVING MAX(PRICE) < (SELECT AVG(PRICE) FROM MEAL_ORDER);
+
+SELECT NAME
+FROM MEAL_ORDER
+WHERE CALORIES >600
+GROUP BY NAME
+HAVING MAX(PRICE)<(SELECT AVG(PRICE)FROM MEAL_ORDER);
+
+
+
+
+
