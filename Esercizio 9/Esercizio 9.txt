@@ -1,0 +1,28 @@
+create table CUSTOMERS (
+customer_id int not null auto_increment,
+customer_Name varchar (255) not null,
+customer_Surname varchar(255) not null,
+customer_phone_number int (10)not null,
+primary key (customer_id)
+);
+
+insert into customers (customer_Name,customer_Surname,customer_phone_number)
+values ("Marco","Bronte",3289986642);
+insert into customers (customer_Name,customer_Surname,customer_phone_number)
+values ("Mariangela","Fantozzi",1234567890);
+insert into customers (customer_Name,customer_Surname,customer_phone_number)
+values ("Giuseppe","Simone",3453453451);
+insert into customers (customer_Name,customer_Surname,customer_phone_number) 
+values ("Gianfranco","Escluso",1231231234);
+update customers 
+set customer_Surname ="Rossi"
+where customer_id =1;
+
+delete from customers where customer_id = 4;
+select * from customers c ;
+
+#risposte seconda parte esercizio
+#6) email VARCHAR(255) NOT NULL,
+#7)product_name VARCHAR(255) NOT NULL+product_description VARCHAR(255) NOT NULL,
+#8)order_id INT NOT NULL AUTO_INCREMENT
+#9) order_id INT NOT NULL AUTO_INCREMENT
