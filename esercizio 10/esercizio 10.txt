@@ -1,0 +1,31 @@
+select M.NAME 
+from meal m 
+inner join INGREDIENT on M.PIATTO_ID= INGREDIENT.MEAL_ID 
+where INGREDIENT.NAME = "GARLIC";
+
+#count distinct evita le ripetizioni
+select COUNT(distinct  M.NAME)
+from meal m 
+inner join INGREDIENT on M.PIATTO_ID =INGREDIENT.MEAL_ID 
+where INGREDIENT.VEGETARIAN =true;
+
+select distinct  M.NAME
+from meal m 
+inner join ingredient i on M.PIATTO_ID =I.MEAL_ID 
+where I.GLUTEN_FREE and I.VEGAN;
+
+select AVG(INGREDIENT_COUNT) as MEDIA_INGRD
+FROM ( SELECT meal_id, COUNT(*) AS ingredient_count FROM ingredient GROUP BY meal_id) AS ingredient_counts;
+
+select distinct M.NAME
+from meal m 
+inner join( SELECT meal_id, COUNT(*) AS ingredient_count FROM ingredient GROUP BY meal_id) AS ingredient_counts; on M.PIATTO_ID= I.MEAL_ID 
+where INGREDIENT_COUNTS >3
+
+SELECT Customer.Name, Orders.Order_ID, Orders.Order_Date
+FROM Customer
+INNER JOIN Orders ON Customer.Customer_ID = Orders.Customer_ID;
+
+select p.name ,p.PRICE ,i.QUANTITY 
+from inventory i 
+inner join product p on p.PRODUCT_ID = i.PRODUCT_ID ;
